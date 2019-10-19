@@ -1,16 +1,7 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+@import 'reset.css';
 
-html,
-body,
 .container {
   height: 100%;
-}
-
-.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,8 +9,15 @@ body,
 }
 
 .container p {
+  color: #666;
+  font-weight: 700;
   margin: 5px 0;
   text-align: center;
+}
+
+.container > a {
+  margin-top: 10px;
+  display: inline-block;
 }
 
 .container img {

@@ -1,3 +1,94 @@
-h1 {
-  color: #999;
+@import 'reset.css';
+
+.container {
+  margin: 0 auto;
+  padding: 10px;
+  width: 100%;
+}
+
+/* --- Header --- */
+
+#about-link {
+  position: absolute;
+  height: 25px;
+  right: 5px;
+  top: 5px;
+  z-index: 1;
+}
+
+.btn-info {
+  width: 25px;
+}
+
+.title {
+  color: #5271ff;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 4em;
+  position: relative;
+  top: 20px;
+}
+
+/* --- Main --- */
+
+.content {
+  width: 100%;
+  max-width: 530px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.clock {
+  flex: 1;
+  text-align: center;
+  vertical-align: top;
+  background-color: #879cff;
+}
+
+.time {
+  font-size: 5.5em;
+  color: #fff;
+  display: inline-block;
+}
+
+.actions {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7d94ff;
+}
+
+.actions img {
+  width: 75px;
+}
+
+/* --- Footer --- */
+
+.courses-container {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #97a7f2;
+}
+
+.course {
+  display: block;
+  width: 100%;
+  font-size: 1.3em;
+  font-style: italic;
+  color: #fff;
+}
+
+.course + .course {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid #879cff;
 }
