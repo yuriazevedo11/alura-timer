@@ -3,16 +3,23 @@ const fs = require('fs')
 
 module.exports = {
   saveCourseData(course, timeStudied) {
-    const formatCourse = course.toLowerCase().replace(/ /g, '-')
-    const courseFile = `${__dirname}/data/${formatCourse}.json`
+    const courseFile = this._getCoursePath(course)
 
     if (fs.existsSync(courseFile)) {
       this._addCourseTime(courseFile, timeStudied)
     } else {
-      this.createCourseFile(courseFile).then(() => {
+      this._createCourseFile(courseFile).then(() => {
         this._addCourseTime(courseFile, timeStudied)
       })
     }
+  },
+  getCoursesData(course) {
+    const courseFile = this._getCoursePath(course)
+    return jsonfile.readFile(courseFile)
+  },
+  _getCoursePath(course) {
+    const formattedCourse = course.toLowerCase().replace(/ /g, '-')
+    return (courseFile = `${__dirname}/data/${formattedCourse}.json`)
   },
   _addCourseTime(courseFile, timeStudied) {
     const content = {
@@ -27,14 +34,14 @@ module.exports = {
         console.log('Info: _addCourseTime -> err', err)
       })
   },
-  async createCourseFile(filename) {
+  async _createCourseFile(filename) {
     return jsonfile
       .writeFile(filename, {})
       .then(() => {
         console.log('Arquivo criado com sucesso')
       })
       .catch(err => {
-        console.log('Info: createCourseFile -> err', err)
+        console.log('Info: _createCourseFile -> err', err)
       })
   }
 }

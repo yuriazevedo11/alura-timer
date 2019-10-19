@@ -1,10 +1,21 @@
 const { ipcRenderer } = require('electron')
+
 const timer = require('./timer')
+const store = require('../../store')
 
 const aboutLink = document.querySelector('#about-link')
 const playButton = document.querySelector('.btn-play')
 const time = document.querySelector('.time')
 const course = document.querySelector('.course')
+
+window.onload = async () => {
+  try {
+    const courseTime = await store.getCoursesData(course.textContent)
+    time.textContent = courseTime.timeStudied || '00:00:00'
+  } catch (err) {
+    console.log('Info: window.onload -> err', err)
+  }
+}
 
 aboutLink.addEventListener('click', () => {
   ipcRenderer.send('open-about-window')
