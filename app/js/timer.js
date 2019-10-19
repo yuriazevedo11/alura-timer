@@ -4,7 +4,7 @@ const moment = require('moment')
 let seconds
 let timer
 module.exports = {
-  start: function(el) {
+  start(el) {
     let currentTime = moment.duration(el.textContent)
     seconds = currentTime.asSeconds()
     clearInterval(timer)
@@ -13,11 +13,11 @@ module.exports = {
       el.textContent = this._secondsToTime(seconds)
     }, 1000)
   },
-  stop: function(course) {
+  stop(course) {
     clearInterval(timer)
     ipcRenderer.send('course-stopped', course, this._secondsToTime(seconds))
   },
-  _secondsToTime: function(seconds) {
+  _secondsToTime(seconds) {
     return moment()
       .startOf('day')
       .seconds(seconds)

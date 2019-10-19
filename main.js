@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
+const store = require('./store')
 
 let aboutWindow = null
 
@@ -39,5 +40,5 @@ ipcMain.on('close-about-window', () => {
 })
 
 ipcMain.on('course-stopped', (event, course, timeStudied) => {
-  console.log(course, timeStudied)
+  store.saveCourseData(course, timeStudied)
 })
