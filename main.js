@@ -37,3 +37,7 @@ ipcMain.on('open-about-window', () => {
 ipcMain.on('close-about-window', () => {
   aboutWindow.close()
 })
+
+ipcMain.on('course-stopped', (event, course, timeStudied) => {
+  console.log(course, timeStudied)
+})
