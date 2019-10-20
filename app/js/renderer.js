@@ -48,4 +48,8 @@ ipcRenderer.on('course-changed', async (event, courseName) => {
 
 formAddCourse.addEventListener('submit', e => {
   e.preventDefault()
+  const newCourse = e.target[0].value
+  course.textContent = newCourse
+  time.textContent = '00:00:00'
+  e.target[0].value = ''
 })
