@@ -14,7 +14,7 @@ window.onload = async () => {
     const [firstCourse] = await store.getCoursesName()
 
     if (firstCourse) {
-      const courseTime = await store.getCourseData(course.textContent)
+      const courseTime = await store.getCourseData(firstCourse)
 
       time.textContent = courseTime.timeStudied
       course.textContent = firstCourse
