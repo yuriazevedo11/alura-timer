@@ -30,6 +30,7 @@ module.exports = {
             role: 'reload'
           },
           {
+            label: 'Developer Tools',
             role: 'toggledevtools'
           }
         ]
@@ -46,11 +47,11 @@ module.exports = {
         ]
       },
       {
-        label: 'Sobre',
+        label: 'About',
         submenu: [
           {
             accelerator: 'CmdOrCtrl+I',
-            label: 'Sobre o Alura Timer',
+            label: 'Alura Timer',
             click: () => {
               ipcMain.emit('open-about-window')
             }

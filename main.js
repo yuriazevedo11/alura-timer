@@ -22,7 +22,7 @@ app.on('ready', () => {
     height: 450
   })
 
-  tray = new Tray(`${__dirname}/app/images/app-icon-tray.png`)
+  tray = new Tray(`${__dirname}/app/img/app-icon-tray.png`)
   tray.setToolTip('Alura Timer')
 
   const trayTemplate = template.generateTray(mainWindow)

@@ -1,14 +1,22 @@
 {
   "name": "timer",
+  "productName": "Alura Timer",
   "version": "1.0.0",
   "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-all": "electron-packager . --overwrite --platform=darwin,linux,win32 --arch=x64 --icon=icons/icon --prune=true --out=release-builds",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=icons/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . --overwrite --asar --platform=win32 --arch=x64 --icon=icons/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Alura Timer\"",
+    "package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --icon=icons/icon.png --prune=true --out=release-builds"
   },
   "dependencies": {
-    "electron": "^6.0.12",
     "jsonfile-promised": "^0.0.1",
     "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "electron": "^6.0.12",
+    "electron-packager": "^14.0.6"
   }
 }

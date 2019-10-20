@@ -28,7 +28,7 @@ aboutLink.addEventListener('click', () => {
   ipcRenderer.send('open-about-window')
 })
 
-let images = ['images/icon-play.svg', 'images/icon-stop.svg']
+let images = ['img/icon-play.svg', 'img/icon-stop.svg']
 let timerOn = false
 playButton.addEventListener('click', () => {
   images = images.reverse()
@@ -37,14 +37,14 @@ playButton.addEventListener('click', () => {
     timerOn = false
     new Notification('Alura Timer', {
       body: `O curso ${course.textContent} foi parado`,
-      icon: 'images/icon-notification-stop.png'
+      icon: 'img/icon-notification-stop.png'
     })
   } else {
     timer.start(time)
     timerOn = true
     new Notification('Alura Timer', {
       body: `O curso ${course.textContent} foi iniciado`,
-      icon: 'images/icon-notification-play.png'
+      icon: 'img/icon-notification-play.png'
     })
   }
   playButton.src = images[0]
