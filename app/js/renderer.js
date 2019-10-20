@@ -11,8 +11,14 @@ const formAddCourse = document.querySelector('.group')
 
 window.onload = async () => {
   try {
-    const courseTime = await store.getCourseData(course.textContent)
-    time.textContent = courseTime.timeStudied || '00:00:00'
+    const [firstCourse] = await store.getCoursesName()
+
+    if (firstCourse) {
+      const courseTime = await store.getCourseData(course.textContent)
+
+      time.textContent = courseTime.timeStudied
+      course.textContent = firstCourse
+    }
   } catch (err) {
     console.log('Info: window.onload -> err', err)
   }

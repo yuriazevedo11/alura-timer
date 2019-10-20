@@ -65,7 +65,7 @@ ipcMain.on('course-stopped', (event, course, timeStudied) => {
 })
 
 ipcMain.on('course-added', (event, course) => {
-  store.saveCourseData(course)
+  store.saveCourseData(course, '00:00:00')
   const template = trayTemplate.addCourse(mainWindow, course)
 
   const contextMenu = Menu.buildFromTemplate(template)
