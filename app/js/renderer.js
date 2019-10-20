@@ -52,6 +52,7 @@ playButton.addEventListener('click', () => {
 
 ipcRenderer.on('course-changed', async (event, courseName) => {
   try {
+    timer.stop(courseName)
     const courseTime = await store.getCourseData(courseName)
     time.textContent = courseTime.timeStudied || '00:00:00'
     course.textContent = courseName
