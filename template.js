@@ -49,6 +49,7 @@ module.exports = {
         label: 'Sobre',
         submenu: [
           {
+            accelerator: 'CmdOrCtrl+I',
             label: 'Sobre o Alura Timer',
             click: () => {
               ipcMain.emit('open-about-window')

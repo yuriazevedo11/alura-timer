@@ -1,4 +1,11 @@
-const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron')
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  Tray,
+  Menu,
+  globalShortcut
+} = require('electron')
 
 const store = require('./store')
 const template = require('./template')
@@ -27,6 +34,10 @@ app.on('ready', () => {
 
   const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
+
+  globalShortcut.register('CmdOrCtrl+Shift+J', () => {
+    mainWindow.send('toggle-button-shortcut')
+  })
 
   mainWindow.loadURL(`${__dirname}/app/index.html`)
 })

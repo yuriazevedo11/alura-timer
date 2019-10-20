@@ -35,9 +35,17 @@ playButton.addEventListener('click', () => {
   if (timerOn) {
     timer.stop(course.textContent)
     timerOn = false
+    new Notification('Alura Timer', {
+      body: `O curso ${course.textContent} foi parado`,
+      icon: 'images/icon-notification-stop.png'
+    })
   } else {
     timer.start(time)
     timerOn = true
+    new Notification('Alura Timer', {
+      body: `O curso ${course.textContent} foi iniciado`,
+      icon: 'images/icon-notification-play.png'
+    })
   }
   playButton.src = images[0]
 })
@@ -60,4 +68,9 @@ formAddCourse.addEventListener('submit', e => {
   e.target[0].value = ''
 
   ipcRenderer.send('course-added', newCourse)
+})
+
+ipcRenderer.on('toggle-button-shortcut', () => {
+  const click = new MouseEvent('click')
+  playButton.dispatchEvent(click)
 })
