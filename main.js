@@ -11,10 +11,10 @@ app.on('ready', () => {
       nodeIntegration: true
     },
     width: 700,
-    height: 400
+    height: 450
   })
 
-  tray = new Tray(`${__dirname}/app/images/icon-tray.png`)
+  tray = new Tray(`${__dirname}/app/images/app-icon-tray.png`)
 
   const template = trayTemplate.generate(mainWindow)
   const contextMenu = Menu.buildFromTemplate(template)

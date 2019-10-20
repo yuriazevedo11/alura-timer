@@ -7,6 +7,7 @@ const aboutLink = document.querySelector('#about-link')
 const playButton = document.querySelector('.btn-play')
 const time = document.querySelector('.time')
 const course = document.querySelector('.course')
+const formAddCourse = document.querySelector('.group')
 
 window.onload = async () => {
   try {
@@ -21,7 +22,7 @@ aboutLink.addEventListener('click', () => {
   ipcRenderer.send('open-about-window')
 })
 
-let images = ['images/play-button.svg', 'images/stop-button.svg']
+let images = ['images/icon-play.svg', 'images/icon-stop.svg']
 let timerOn = false
 playButton.addEventListener('click', () => {
   images = images.reverse()
@@ -43,4 +44,8 @@ ipcRenderer.on('course-changed', async (event, courseName) => {
   } catch (err) {
     console.log('Info: err', err)
   }
+})
+
+formAddCourse.addEventListener('submit', e => {
+  e.preventDefault()
 })
