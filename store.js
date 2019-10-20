@@ -13,7 +13,7 @@ module.exports = {
       })
     }
   },
-  getCoursesData(course) {
+  getCourseData(course) {
     const courseFile = this._getCoursePath(course)
     return jsonfile.readFile(courseFile)
   },

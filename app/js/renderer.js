@@ -10,7 +10,7 @@ const course = document.querySelector('.course')
 
 window.onload = async () => {
   try {
-    const courseTime = await store.getCoursesData(course.textContent)
+    const courseTime = await store.getCourseData(course.textContent)
     time.textContent = courseTime.timeStudied || '00:00:00'
   } catch (err) {
     console.log('Info: window.onload -> err', err)
@@ -33,4 +33,14 @@ playButton.addEventListener('click', () => {
     timerOn = true
   }
   playButton.src = images[0]
+})
+
+ipcRenderer.on('course-changed', async (event, courseName) => {
+  try {
+    const courseTime = await store.getCourseData(courseName)
+    time.textContent = courseTime.timeStudied
+    course.textContent = courseName
+  } catch (err) {
+    console.log('Info: err', err)
+  }
 })

@@ -16,7 +16,8 @@ app.on('ready', () => {
 
   tray = new Tray(`${__dirname}/app/images/icon-tray.png`)
 
-  const contextMenu = Menu.buildFromTemplate(trayTemplate.generate())
+  const template = trayTemplate.generate(mainWindow)
+  const contextMenu = Menu.buildFromTemplate(template)
 
   tray.setToolTip('Alura Timer')
   tray.setContextMenu(contextMenu)
