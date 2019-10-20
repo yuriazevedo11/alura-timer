@@ -17,6 +17,22 @@ module.exports = {
     const courseFile = this._getCoursePath(course)
     return jsonfile.readFile(courseFile)
   },
+  getCoursesName() {
+    const coursesFile = fs.readdirSync(`${__dirname}/data`)
+    coursesFile.shift()
+
+    const coursesName = coursesFile.map(course => {
+      let formattedCourse = course
+        .split('-')
+        .map(
+          value => value.charAt(0).toUpperCase() + value.slice(1, value.length)
+        )
+
+      return formattedCourse.join(' ').replace(/.json/g, '')
+    })
+
+    return coursesName
+  },
   _getCoursePath(course) {
     const formattedCourse = course.toLowerCase().replace(/ /g, '-')
     return (courseFile = `${__dirname}/data/${formattedCourse}.json`)

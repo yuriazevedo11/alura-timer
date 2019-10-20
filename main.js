@@ -1,5 +1,7 @@
 const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron')
+
 const store = require('./store')
+const trayTemplate = require('./trayTemplate')
 
 let tray
 
@@ -14,12 +16,7 @@ app.on('ready', () => {
 
   tray = new Tray(`${__dirname}/app/images/icon-tray.png`)
 
-  const contextMenu = Menu.buildFromTemplate([
-    { label: 'Cursos' },
-    { label: '', type: 'separator' },
-    { label: 'React Native', type: 'radio', checked: true },
-    { label: 'Flutter', type: 'radio' }
-  ])
+  const contextMenu = Menu.buildFromTemplate(trayTemplate.generate())
 
   tray.setToolTip('Alura Timer')
   tray.setContextMenu(contextMenu)
