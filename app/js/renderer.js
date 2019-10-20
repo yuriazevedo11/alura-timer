@@ -39,7 +39,7 @@ playButton.addEventListener('click', () => {
 ipcRenderer.on('course-changed', async (event, courseName) => {
   try {
     const courseTime = await store.getCourseData(courseName)
-    time.textContent = courseTime.timeStudied
+    time.textContent = courseTime.timeStudied || '00:00:00'
     course.textContent = courseName
   } catch (err) {
     console.log('Info: err', err)
@@ -52,4 +52,6 @@ formAddCourse.addEventListener('submit', e => {
   course.textContent = newCourse
   time.textContent = '00:00:00'
   e.target[0].value = ''
+
+  ipcRenderer.send('course-added', newCourse)
 })

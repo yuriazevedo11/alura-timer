@@ -3,10 +3,11 @@ const { app, BrowserWindow, ipcMain, Tray, Menu } = require('electron')
 const store = require('./store')
 const trayTemplate = require('./trayTemplate')
 
+let mainWindow
 let tray
 
 app.on('ready', () => {
-  let mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true
     },
@@ -15,17 +16,20 @@ app.on('ready', () => {
   })
 
   tray = new Tray(`${__dirname}/app/images/app-icon-tray.png`)
+  tray.setToolTip('Alura Timer')
 
   const template = trayTemplate.generate(mainWindow)
-  const contextMenu = Menu.buildFromTemplate(template)
 
-  tray.setToolTip('Alura Timer')
+  const contextMenu = Menu.buildFromTemplate(template)
   tray.setContextMenu(contextMenu)
 
   mainWindow.loadURL(`${__dirname}/app/index.html`)
 })
 
-// About window events
+/**
+ * "About" window events
+ */
+
 let aboutWindow = null
 
 ipcMain.on('open-about-window', () => {
@@ -52,7 +56,18 @@ ipcMain.on('close-about-window', () => {
   aboutWindow.close()
 })
 
-// Course events
+/**
+ * Course events
+ */
+
 ipcMain.on('course-stopped', (event, course, timeStudied) => {
   store.saveCourseData(course, timeStudied)
+})
+
+ipcMain.on('course-added', (event, course) => {
+  store.saveCourseData(course)
+  const template = trayTemplate.addCourse(mainWindow, course)
+
+  const contextMenu = Menu.buildFromTemplate(template)
+  tray.setContextMenu(contextMenu)
 })
