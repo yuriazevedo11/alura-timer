@@ -15,6 +15,7 @@ let tray
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
+    icon: '/icons/icon.png',
     webPreferences: {
       nodeIntegration: true
     },
