@@ -19,7 +19,8 @@ app.on('ready', () => {
       nodeIntegration: true
     },
     width: 700,
-    height: 450
+    height: 450,
+    resizable: false
   })
 
   tray = new Tray(`${__dirname}/app/img/app-icon-tray.png`)
@@ -57,7 +58,8 @@ ipcMain.on('open-about-window', () => {
       width: 300,
       height: 250,
       alwaysOnTop: true,
-      frame: false
+      frame: false,
+      resizable: false
     })
 
     aboutWindow.on('closed', () => {
